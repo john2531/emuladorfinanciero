@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <div class="post">
+            {% if post.published_date %}
+                <div class="date">
+                    Se Realizó: {{ post.published_date }}
+                </div>
+            {% endif %}
+            <h3 align="center">Detalles Movimimentos Financieros</h3>
+            <p>-</p>
+            <div align="center">
+    <table border="1" align="center">
+      <tr>
+        <td><div align="center">Concepto</div></td>
+        <td><div align="center">Descripcion</div></td>
+        <td><div align="center">Entra</div></td>
+        <td><div align="center">Sale</div></td>
+        <td colspan="2"><div align="center">ACCION</div></td>
+        </tr>
+           <td><div align="center">{{ post.idconcepto }}</div></td>
+           <td><div align="center">{{ post.observacion|linebreaksbr }}</div></td>
+           <td><div align="center">$ {{ post.entrada|linebreaksbr }}</div></td>
+            <td><div align="center">$ {{ post.salida|linebreaksbr }}</div></td>
+            <td><div align="center"><a href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-share-alt"></span>MODIFICAR</span></a></div></td>
+            <td><div align="center"><a href=""><span class="glyphicon glyphicon-remove">ELIMINAR</span></a></div></td>
+        </div>
+        </tr>
+        </table>
+  </div>
+    {% endblock %}

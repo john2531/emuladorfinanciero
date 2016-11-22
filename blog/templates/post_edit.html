@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <h1>Nuevo Movimiento Financiero</h1>
+        <form id="form1" method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-primary"><p align="center">Registra Movimiento Contable<p></button>
+        </form>
+    {% endblock %}

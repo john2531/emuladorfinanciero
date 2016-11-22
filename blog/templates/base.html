@@ -1,13 +1,206 @@
-    <body>
+<!DOCTYPE html>
+{% load staticfiles %}
+    <html>
+        <head>
+            <title>Movimientos Contables</title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="css/jquery.sBubble-0.1.1.css" />
+            <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{% static 'my_app/myexample.jpg' %}">
+            <link href="HTML5_twoColFixRtHdr.css" rel="stylesheet" type="text/css">
+            <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+            <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+            <script src="jquery.ui.datepicker-es.js"></script>
+            <script type='text/javascript'>
+//<![CDATA[
+
+// Grabar
+function setCookie(name, value, expires, path, domain, secure) {
+document.cookie = name + "=" + escape(value) +
+((expires == null) ? "" : "; expires=" + expires.toGMTString()) +
+((path == null) ? "" : "; path=" + path) +
+((domain == null) ? "" : "; domain=" + domain) +
+((secure == null) ? "" : "; secure");
+}
+
+// Leer
+function getCookie(name){
+var cname = name + "=";
+var dc = document.cookie;
+if (dc.length > 0) {
+begin = dc.indexOf(cname);
+if (begin != -1) {
+begin += cname.length;
+end = dc.indexOf(";", begin);
+if (end == -1) end = dc.length;
+return unescape(dc.substring(begin, end));
+}
+}
+return null;
+}
+
+//Borrar
+function delCookie (name,path,domain) {
+if (getCookie(name)) {
+document.cookie = name + "=" +
+((path == null) ? "" : "; path=" + path) +
+((domain == null) ? "" : "; domain=" + domain) +
+"; expires=Thu, 01-Jan-70 00:00:01 GMT";
+}
+}
+
+//]]>
+</script>
+        </head>
+        <style type="text/css">
+        #apDiv1 {
+    position: absolute;
+    left: 817px;
+    top: 25px;
+    width: 273px;
+    height: 52px;
+    z-index: 1;
+    }
+
+                .page-header {
+        background-color: #ff9400;
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+    }
+
+    .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+        color: #ffffff;
+        font-size: 36pt;
+        text-decoration: none;
+    }
+
+    .content {
+        margin-left: 40px;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: 'Lobster', cursive;
+        size: 50px;
+    }
+
+    .date {
+        float: right;
+        color: #828282;
+    }
+
+    .save {
+        float: right;
+    }
+
+    .post-form textarea, .post-form input {
+        width: 100%;
+    }
+
+    .top-menu, .top-menu:hover, .top-menu:visited {
+        color: #ffffff;
+        float: right;
+        font-size: 26pt;
+        margin-right: 20px;
+    }
+
+    .post {
+        margin-bottom: 70px;
+    }
+
+    .post h1 a, .post h1 a:visited {
+        color: #000000;
+    }
+    #footer 
+    {
+    position: relative;
+    margin-top: -150px; /* valor negativo del alto del footer */
+    height: 150px;
+    clear:both;
+    } 
+        </style>
+
+        <body>
+        <div class='invisible' id='idatenuar' style='z-index:99; position:fixed; top:0px; left:0px; overflow:visible; height:100%; width:100%; background:#000000; -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80); filter:alpha(opacity=80); -moz-opacity:0.8; opacity: 0.8; -khtml-opacity: 0.8;'/>
+
+<div class='invisible' id='idbloque' style=' z-index:100;position:fixed; overflow:visible; top:50%; left:50%; width:400px; height:300px; margin-top:-150px; margin-left:-200px; border:5px solid #990000; background:#ffffff; color:#000000; padding:20px; text-align:center;'>
+<img src="http://www.5consultores.com/wp-content/uploads/2013/01/Finanzas-icono.png" height="298" width="411" />
+Ya he leído este aviso y ahora quiero <a href='javascript:plegardesplegar(&quot;idatenuar&quot;);javascript:plegardesplegar(&quot;idbloque&quot;);'>ENTRAR</a>
+</div>
+
+<div style="position: absolute; top: -25px; right: 0px; background: #ffffff; color: #000000; padding: 1px; background-image: url(modulo2.png); layer-background-image: url(modulo2.png); border: 1px none #000000;">
+<a href="javascript:plegardesplegar('idatenuar');javascript:plegardesplegar('idbloque');">[X]</a>
+</div>
+</div>
+<style type='text/css'>
+.visible {display:block;}
+.invisible {display:none;}
+</style>
+<script type='text/javascript'>
+function plegardesplegar(identificacion){
+var menu = document.getElementById(identificacion);
+if(menu.className == 'visible'){
+menu.className = 'invisible';
+}else{
+menu.className = 'visible';
+}
+}
+</script>
+<script type='text/javascript'>
+var comprobar = getCookie("vezprimera");
+if (comprobar != null) {}
+else { 
+var expiration = new Date();
+expiration.setTime(expiration.getTime() + 60000);
+setCookie("vezprimera","1",expiration);
+plegardesplegar("idatenuar");
+plegardesplegar("idbloque");
+}
+</script>
+<style type="text/css">
+#contenedorizda {
+position:fixed;
+top:25%;left:0px;
+width:38px;height:102px;
+background:url(http://3.bp.blogspot.com/_0eC4K-qZ7AM/Sxvva1xqibI/AAAAAAAAK0E/iaMzC5O-0cM/s200/ejemplo.jpg) no-repeat transparent -4px 0px;
+z-index:10;
+}
+</style>
+<a href="javascript:plegardesplegar('idatenuar');javascript:plegardesplegar('idbloque');">
+</a>
         <div class="page-header">
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
+            <a href="{% url 'blog.views.post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus">Agregar</span></a>
+            <a href="{% url 'blog.views.post_list' %}" class="top-menu"><span class="glyphicon glyphicon-list-alt"> Ver</span></a>
+                <h1 align="center"><a href="/">Bienvenido al sistema financiero</a></h1>
+            </div>
+
+            <div class="content container">
+                <div class="row">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    <img src="http://www.5consultores.com/wp-content/uploads/2013/01/Finanzas-icono.png" align="center">
                 </div>
             </div>
-        </div>
-    </body>
+            <footer>
+                <p align="center">(c)2016 by GorillaSoft</p>
+            </footer>
+            <script type="text/javascript">
+
+    function enviar(){
+    var formulario = document.getElementById("form1");  
+    var dato = formulario[0];
+ 
+    if (dato.value!="form1" ){
+       alert("Movimiento Registrado Exitosamente");
+        formulario.submit();
+        return true;
+    } else {
+        alert("La transacción no se puede realizar, la salida excede al saldo");
+        return false;
+    }
+}
+</script>
+        </body>
+    </html>

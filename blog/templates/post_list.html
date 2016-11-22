@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-          
-    <title></title>
-</head>
-<body>
-        <footer>
-            (c)2016 Copyright
-        </footer>
-</body>
-</html>
+{% extends 'base.html' %}    
+{% block content %}
+				<div class="date">
+				Fecha Actual: {% now "d/m/y,f " %}
+                {% for posts in posts %}
+            <div class="post">
+            <div class="date">
+            
+            </div>
+            <h1><a href="{% url 'blog.views.post_detail' pk=posts.pk %}">{{ posts.idconcepto }}<span class="glyphicon glyphicon-pencil"></a></span></h1>
+            <p>{{ posts.observacion|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock  %}
