@@ -11,4 +11,13 @@
             <p>{{ posts.observacion|linebreaksbr }}</p>
         </div>
     {% endfor %}
+    <nav>
+        {% if post.has_previous %}
+        <a href="?page={{ post.previous_page_number }}">Pagina anterior</a>
+        {% endif %}
+        <p>Pagina  {{ post.number }} de {{ post.paginator.num_pages }}</p>
+        {% if post.has_next %}
+        <a href="?page={{ post.next_page_number }}">Pagina siguiente</a>
+        {% endif %}
+    </nav>
 {% endblock  %}

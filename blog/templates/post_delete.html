@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>¿Realmente deseas eliminar el registro {{ post.idconcepto}} ?</h3>
+        <button class="btn btn-danger" type="submit">Eliminar</button>
+
+    </form>
+    {% endblock%}

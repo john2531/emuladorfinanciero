@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from .forms import PostForm
@@ -47,5 +48,25 @@ def post_edit(request, pk):
             form = PostForm(instance=post)
         return render(request, 'post_edit.html', {'form': form})
 
+def post_delete(request, pk):
+    post = Post.objects.get(pk = pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('blog.views.post_list')
+    return render(request, 'post_delete.html', {'post': post})
 
+
+def main(request):
+	entrada = Post.objects.all().order_by("-published_date")
+	paginator = Paginator(entrada,4)
+
+	try: pagina = int(request.GET.get("page","1"))
+	except ValueError: pagina = 1
+		
+	try:
+		entrada = paginator.page(pagina)
+	except (InvalidPage, EmptyPage):
+		entrada = Paginator.page(Paginator.num_pages)
+
+	return render_to_response("post_list.html",dict(post=entrada))
 
